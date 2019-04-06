@@ -8,10 +8,11 @@ class Letter {
         return this.isGuessed ? this.char : '_';
     }
     checkChar(key) {
-        if (key.toUpperCase() === this.char) {
+        const guess = key.toUpperCase() === this.char;
+        if (guess) {
             this.isGuessed = true;
         }
-        return this.isGuessed;
+        return guess;
     }
 }
 

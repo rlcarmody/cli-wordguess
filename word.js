@@ -11,14 +11,13 @@ class Word {
         return this.letters.join(' ');
     }
     guessLetter(key) {
-        let isCorrect = false;
+        let isCorrect = 0;
         for (let letter of this.letters) {
-            if (!letter.isGuessed) {
-                if (letter.checkChar(key)) {
-                    isCorrect = true;
-                }
+            if (letter.checkChar(key)) {
+                isCorrect++;
             }
         }
+        console.log(isCorrect)
         return isCorrect;
     }
     remainingLetters() {

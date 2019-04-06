@@ -19,20 +19,21 @@ const playGame = (words, round) => {
                 message: 'Guess a letter',
                 name: 'guess',
                 validate: input => {
-                    if (input.length > 1 || input.length < 1) {
+                    if (input.length > 1 || !/[a-z]/i.test(input.charAt(0))) {
                         return ('Enter one and only one letter')
-                    } return true;
+                    }
+                    return true;
                 }
             }
         ]).then(input => {
-            words[round].guessLetter(input.guess) ? console.log('\x1b[32m','\nCORRECT!','\x1b[37m') : console.log('\x1b[31m','\nINCORRECT!','\x1b[37m','\nRemaining Guesses: ' + --remainingGuess);
+            words[round].guessLetter(input.guess) ? console.log('\x1b[32m', '\nCORRECT!', '\x1b[37m') : console.log('\x1b[31m', '\nINCORRECT!', '\x1b[37m', '\nRemaining Guesses: ' + --remainingGuess);
             const currentWord = words[round].showWord();
             console.log(`\n${currentWord}\n`);
             if (words[round].remainingLetters() && remainingGuess) {
                 promptForGuess();
             } else if (++round < words.length) {
                 playGame(words, round);
-            } else {console.log('\x1b[31m',gameOver.text,'\x1b[30m');}
+            } else { console.log('\x1b[31m', gameOver.text, '\x1b[30m'); }
         })
     }
     promptForGuess();
