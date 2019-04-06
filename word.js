@@ -17,7 +17,6 @@ class Word {
                 isCorrect++;
             }
         }
-        console.log(isCorrect)
         return isCorrect;
     }
     remainingLetters() {
